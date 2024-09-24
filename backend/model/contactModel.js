@@ -2,14 +2,14 @@ const mongoose = require("mongoose");
 
 const contactSchema = new mongoose.Schema({
 
-    client_name: String,
-    client_email: {
+    senderName: String,
+    subject: {
         type: String,
-        required: [true, "Client-Email is required"]
+        required: [true, "subject is required"]
     },
-    client_message: {
+    message: {
         type: String,
-        required: [true, "Client-Email is required"]
+        required: [true, "Sender-Message is required"]
     },
 
 

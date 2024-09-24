@@ -20,6 +20,7 @@ server.use("/api/v1/home", require("./routes/home"))
 server.use("/api/v1/about", require("./routes/about"))
 server.use("/api/v1/skill", require("./routes/skill"))
 server.use("/api/v1/project", require("./routes/project"))
+server.use("/api/v1/contact", require("./routes/contact"))
 
 //Database
 connectDB();
