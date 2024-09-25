@@ -1,0 +1,67 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
+:root {
+  --primary_bg: #212ea0;
+  --primary_btn_clr: #fff;
+  --secondary_btn_clr: #212121;
+  --shadow: 0px 25px 31px -8px rgba(126, 140, 155, 0.25);
+  --light_shadow: -7px 12px 15px -8px rgba(166, 150, 165, 0.25);
+  --blue-gradient: #4066ff;
+}
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  font-family: "Outfit", sans-serif;
+}
+body {
+  background: #f5f5f5;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+  line-height: 1;
+  cursor: pointer;
+}
+.container {
+  padding: 0 10%;
+}
+.btn {
+  background: #fff;
+  color: var(--secondary_btn_clr);
+  padding: 14px 25px;
+  font-size: 16px;
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+  border-radius: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn img {
+  width: 20px;
+  margin-left: 20px;
+}
+.btn.dark-btn {
+  background-color: #212ea0;
+  color: #fff;
+}
+
+.flexProperty {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+@media (max-width: 1073px) {
+  .btn {
+    padding: 7px 22px;
+  }
+  .container {
+    padding: 0 5%;
+  }
+}

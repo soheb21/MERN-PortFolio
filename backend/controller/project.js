@@ -9,7 +9,7 @@ exports.addProject = async (req, res) => {
         const { project_poster } = req.files;
         const cloudinaryResponse = await cloudinary.uploader.upload(project_poster.tempFilePath, { folder: "SHOEB-Project" });
 
-        const doc = await projectModel.create({ project_name, project_des, project_tech, project_Github_link, project_deployed_link, company_name, company_role, company_period, icon_img: { public_id: cloudinaryResponse.public_id, project_poster_URL: cloudinaryResponse.secure_url } });
+        const doc = await projectModel.create({ project_name, project_des, project_tech, project_Github_link, project_deployed_link, company_name, company_role, company_period, project_poster: { public_id: cloudinaryResponse.public_id, project_poster_URL: cloudinaryResponse.secure_url } });
         if (doc) {
             return succcessMssg(201, "Project Info Added Successfully", true, doc, res);
         }
@@ -40,7 +40,7 @@ exports.updateProject = async (req, res) => {
             return errorMssg(400, "Not Found", false, res);
         }
 
-        await cloudinary.uploader.destroy(existingDoc.icon_img.public_id)
+        await cloudinary.uploader.destroy(existingDoc.project_poster.public_id)
         const cloudinaryResponse = await cloudinary.uploader.upload(project_poster.tempFilePath, { folder: "SHOEB-Project" });
         newDoc.project_poster = {
             public_id: cloudinaryResponse.public_id,
