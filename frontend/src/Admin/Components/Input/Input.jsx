@@ -7,17 +7,28 @@ const Input = ({ title, handleSubmit, controls, formData, setFormData }) => {
             <h3>{title}</h3>
 
             {
-                controls?.map((item, ind) => (
+                controls?.map((item) => (
                     <div key={item.id} className="input-info">
                         <label htmlFor="">{item?.label}</label>
                         <input
                             type={item.type}
                             value={item.type === 'file' ? '' : formData[item?.name]}
                             placeholder={item?.placeholder}
-                            onChange={(e) => setFormData({
-                                ...formData,
-                                [item.name]: e.target.value
-                            })}
+                            onChange={(e) => setFormData(
+                                item.type !== 'file' ?
+                                    {
+                                        ...formData,
+                                        [item.name]: e.target.value
+
+                                    }
+                                    :
+                                    {
+                                        ...formData,
+                                        [item.name]: e.target.files[0]
+
+                                    }
+
+                            )}
                             name={item.name} />
 
                     </div>

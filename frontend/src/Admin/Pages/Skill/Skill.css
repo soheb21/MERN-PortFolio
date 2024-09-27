@@ -1,5 +1,5 @@
 .skill {
-  margin: 90px auto;
+  margin: 120px auto;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 1.5rem;
@@ -91,4 +91,40 @@
   color: #fff;
   font-size: 1.1rem;
   text-align: center;
+}
+@media (max-width: 600px) {
+  .skill {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .skill-info {
+    padding: 10px 0px;
+  }
+  .skillModel {
+    padding: 10px;
+    top: 0%;
+  }
+  .skillModel p {
+    left: 50%;
+    transform: translate(-50%);
+  }
+  .skill-info {
+    padding: 0;
+    flex-direction: column;
+    margin: 0;
+  }
+  .skill-info .left img {
+    width: 32px;
+  }
+  .left h3 {
+    font-size: 15px;
+  }
+  .skill-info ul {
+    flex-direction: row;
+    margin-bottom: 10px;
+  }
+  .skill-info ul li {
+    padding: 4px;
+    font-size: 15px;
+  }
 }

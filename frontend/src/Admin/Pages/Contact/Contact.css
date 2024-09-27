@@ -1,0 +1,80 @@
+.contacts {
+  margin: 100px auto;
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+}
+.contacts > h2 {
+  position: absolute;
+  left: 50px;
+  font-size: 2rem;
+  font-weight: 400;
+  border-bottom: 1px solid var(--primary_bg);
+}
+.contact {
+  box-shadow: var(--light_shadow);
+  max-width: 500px;
+  padding: 20px 50px;
+  width: 100%;
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.6s;
+  background-color: #fff;
+}
+.contact:hover {
+  transform: scale(1.1);
+  background-color: rgb(241, 242, 249);
+}
+.contact h4,
+p {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--primary_bg);
+}
+.contact span {
+  color: var(--secondary_btn_clr);
+  font-weight: 400;
+}
+.contactbtn {
+  color: #fff;
+  width: 100%;
+  font-size: 14px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: none;
+  transition: 0.6s;
+  background-color: red;
+}
+.contactbtn:hover {
+  transform: scale(1.1);
+}
+@media (max-width: 800px) {
+  .contacts {
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+  }
+}
+
+@media (max-width: 600px) {
+  .contacts > h2 {
+    position: static;
+    font-size: 23px;
+    margin-top: 70px;
+    width: fit-content;
+  }
+  .contacts {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin: 0;
+  }
+  .contact {
+    padding: 20px;
+    margin-top: 20px;
+  }
+}

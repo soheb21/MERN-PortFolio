@@ -8,14 +8,12 @@
   position: relative;
 }
 .projects > .project_header {
-  position: absolute;
   display: flex;
   justify-content: space-between;
   width: 100%;
   padding: 0 10%;
-  top: 10px;
   margin-top: 10px;
-  margin-bottom: 40px;
+  margin-bottom: 10px;
 }
 .project_header h3 {
   font-size: 2rem;
@@ -26,7 +24,7 @@
   max-width: 350px;
   padding: 10px 20px;
   width: 100%;
-  margin-top: 90px;
+  margin-top: 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -72,16 +70,16 @@
 }
 
 .proejctModel {
-  background-color: var(--primary_btn_clr);
+  background-color: #f5f5f5;
   position: absolute;
   z-index: 4;
-  padding: 2rem;
+  padding: 10px;
   top: 0;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100%;
+  height: 100vh;
 }
 .proejctModel p {
   background-color: red;
@@ -91,4 +89,22 @@
   border-radius: 12px;
   border: none;
   transition: all ease-in 300ms;
+}
+
+@media (max-width: 800px) {
+  .projects > .project_header {
+    position: static;
+    padding: 0 5%;
+    margin: 0;
+  }
+  .projects {
+    padding: 0;
+  }
+  .project {
+    margin-top: 10px;
+  }
+  .proejctModel {
+    padding: 10px;
+    height: 100%;
+  }
 }

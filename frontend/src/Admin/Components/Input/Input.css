@@ -63,7 +63,25 @@
 }
 
 @media (max-width: 600px) {
+  .input-container h3 {
+    padding-top: 12px;
+    margin-top: 14px;
+  }
+  .input-container {
+    margin-top: 50px;
+    margin-bottom: 15px;
+    max-width: 350px;
+    overflow: scroll;
+    border-radius: 10px;
+  }
   .input-info {
     flex-direction: column;
+    gap: 5px;
+    padding: 0;
+  }
+  .submitbtn {
+    position: static;
+    width: 100%;
+    margin: 10px 0;
   }
 }

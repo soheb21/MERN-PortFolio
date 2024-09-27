@@ -1,14 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import logo from "../../../assets/logo.png"
 import "./Navbar.css"
 import { Link } from 'react-router-dom'
+import menuBar from "../../../assets/menu-icon.png"
 
 const Navbar = () => {
+    const [isOpen, setIsOpen] = useState(false);
     return (
         <nav>
             <img src={logo} alt="logo_png" />
+            <img onClick={() => setIsOpen(prev => !prev)} className='menubar' src={menuBar} alt="menuBar" />
 
-            <ul>
+            <ul className={`${!isOpen ? 'toggle-menu' : ''}`}>
                 <li>
                     <Link to={"/admin-home"}>Home</Link>
                 </li>
@@ -22,10 +25,13 @@ const Navbar = () => {
                 <li>
                     <Link to={"/admin-projects"}>Project</Link>
                 </li>
-                <button className='btn'>
-                    <Link to={"/admin-contact"}>Contact us</Link>
+                <li>
+                    <button className='btn'>
+                        <Link to={"/admin-contact"}>Contact us</Link>
 
-                </button>
+                    </button>
+                </li>
+
             </ul>
         </nav>
     )
