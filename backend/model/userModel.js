@@ -18,11 +18,12 @@ const userSchema = new mongoose.Schema({
 }, { timestamps: true })
 
 
+
 userSchema.pre("save", async function (next) {
     if (!this.isModified("password")) return next();
     this.password = await bcrypt.hash(this.password, 10);
 })
-userSchema.methods.generateToken = () => {
+userSchema.methods.generateToken = function () {
     return jwt.sign({ id: this._id }, process.env.SECRET_JWT, { expiresIn: "1d" })
 }
 userSchema.methods.comparePassword = async function (enteredPassword) {

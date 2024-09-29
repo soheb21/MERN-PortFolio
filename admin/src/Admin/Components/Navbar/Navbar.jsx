@@ -13,7 +13,7 @@ const Navbar = () => {
 
             <ul className={`${!isOpen ? 'toggle-menu' : ''}`}>
                 <li>
-                    <Link to={"/admin-home"}>Home</Link>
+                    <Link to={"/"}>Home</Link>
                 </li>
                 <li>
                     <Link to={"/admin-about"}>About</Link>

@@ -52,7 +52,7 @@ const checkUser = async (req, res) => {
     try {
         let user = await UserModel.findById(req.user);
         if (!user) {
-            return errorMssg(404, "User Not Found", false, res)
+            return errorMssg(404, "User Not Available", false, res)
         }
         return succcessMssg(201, `Welcome ${user?.username}`, true, user, res)
 
