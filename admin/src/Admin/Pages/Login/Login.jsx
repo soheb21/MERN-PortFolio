@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import Input from '../../Components/Input/Input';
 import { useDispatch, useSelector } from 'react-redux';
-import { loginAsync } from '../../../redux/auth/authAPI';
+import { loginAsync } from '../../../redux/admin_store/auth/authAPI';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { clesrAllAuthErrors } from '../../../redux/auth/authSlice';
+import { clesrAllAuthErrors } from '../../../redux/admin_store/auth/authSlice';
 
 const Login = () => {
     const controls = [

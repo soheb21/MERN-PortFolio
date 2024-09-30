@@ -6,6 +6,7 @@ import menuBar from "../../../assets/menu-icon.png"
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
+
     return (
         <nav>
             <img src={logo} alt="logo_png" />

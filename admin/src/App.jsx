@@ -2,7 +2,7 @@ import Home from './Admin/Pages/Home/Home'
 import Projects from './Admin/Pages/Projects/Projects'
 import './App.css'
 import Navbar from './Admin/Components/Navbar/Navbar'
-import { BrowserRouter as Router, Routes, Route, useNavigate, Navigate } from "react-router-dom"
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import Skill from './Admin/Pages/Skill/Skill'
 import About from './Admin/Pages/About/About'
 import Contact from './Admin/Pages/Contact/Contact'
@@ -10,11 +10,12 @@ import Login from './Admin/Pages/Login/Login'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { toast, ToastContainer } from "react-toastify";
-import { clesrAllAuthErrors } from './redux/auth/authSlice'
+import { clesrAllAuthErrors } from './redux/admin_store/auth/authSlice'
 import 'react-toastify/dist/ReactToastify.css';
 
-import { getUserAysnc } from './redux/auth/authAPI'
+import { getUserAysnc } from './redux/admin_store/auth/authAPI'
 import ProtectedRoutes from './utils/ProtectedRoutes'
+import { gethome } from './redux/admin_store/admin_home/adminHomeAPI'
 
 function App() {
   const dispatch = useDispatch();
@@ -23,6 +24,7 @@ function App() {
   useEffect(() => {
     if (isAuth || token) {
       dispatch(getUserAysnc());
+      dispatch(gethome());
       toast.success(message ? message : null)
     }
     if (error) {

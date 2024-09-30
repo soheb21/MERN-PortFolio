@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import "./Home.css"
 import Input from '../../Components/Input/Input'
+import { useDispatch, useSelector } from 'react-redux'
+import { homeupdate } from '../../../redux/admin_store/admin_home/adminHomeAPI'
+import { formatProdErrorMessage } from '@reduxjs/toolkit'
 
 const Home = () => {
 
@@ -54,20 +57,41 @@ const Home = () => {
         },
 
     ]
+    const { home } = useSelector(state => state.home);
     const initilizeHomeData = {
-        position: "",
-        fullname: "",
-        linkdin_url: "",
-        github_url: "",
-        insta_url: "",
-        resume: "",
-        logo: ""
+        position: home ? home.position : "",
+        fullname: home ? home.fullname : "",
+        linkdin_url: home ? home.linkdin_url : "",
+        github_url: home ? home.github_url : "",
+        insta_url: home ? home.insta_url : "",
+        resume: home.resume && home.resume.resume_URL,
+        logo: home.logo && home.logo.logo_URL,
+
     }
     const [homeFormData, setHomeFormData] = useState(initilizeHomeData);
-    const handleSubmit = () => {
-        console.log("1", homeFormData);
-        setHomeFormData(initilizeHomeData);
+
+
+
+    const dispatch = useDispatch();
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const form = new FormData();
+        form.append("position", homeFormData.position);
+        form.append("fullname", homeFormData.fullname);
+        form.append("linkdin_url", homeFormData.linkdin_url);
+        form.append("github_url", homeFormData.github_url);
+        form.append("insta_url", homeFormData.insta_url);
+        if (homeFormData.resume) {
+            form.append("resume", homeFormData.resume);
+        }
+        if (homeFormData.logo) {
+            form.append("logo", homeFormData.logo);
+        }
+
+        dispatch(homeupdate({ form, id: home?._id }))
     }
+
+
 
     return (
         <div className='flexProperty'>

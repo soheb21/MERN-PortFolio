@@ -45,8 +45,8 @@ exports.createHome = async (req, res) => {
 }
 
 exports.updateHome = async (req, res) => {
+
     try {
-        const { logo, resume } = req.files;
         const { id } = req.params;
         const newDoc = {
             position: req.body.position,
@@ -60,23 +60,26 @@ exports.updateHome = async (req, res) => {
         if (!existingDoc) {
             return errorMssg(400, "Profile Not Found", false, res);
         }
+        if (req.files !== null && req.files.logo) {
+            const Logo_public_id = existingDoc.logo.public_id;
+            await cloudinary.uploader.destroy(Logo_public_id);
+            const cloudRes1 = await cloudinary.uploader.upload(req.files.logo.tempFilePath, { folder: "SHOEB-PORTFOLIO" })
+            newDoc.logo = {
+                public_id: cloudRes1.public_id,
+                logo_URL: cloudRes1.secure_url
+            }
 
-        const Logo_public_id = existingDoc.logo.public_id;
-        const resume_public_id = existingDoc.resume.public_id;
-        await cloudinary.uploader.destroy(Logo_public_id);
-        await cloudinary.uploader.destroy(resume_public_id);
-        const cloudRes1 = await cloudinary.uploader.upload(logo.tempFilePath, { folder: "SHOEB-PORTFOLIO" })
-        const cloudRes2 = await cloudinary.uploader.upload(resume.tempFilePath, { folder: "SHOEB-RESUME" })
-        newDoc.logo = {
-            public_id: cloudRes1.public_id,
-            logo_URL: cloudRes1.secure_url
         }
-        newDoc.resume = {
-            public_id: cloudRes2.public_id,
-            resume_URL: cloudRes2.secure_url
-        }
+        if (req.files !== null && req.files.resume) {
+            const resume_public_id = existingDoc.resume.public_id;
+            await cloudinary.uploader.destroy(resume_public_id);
+            const cloudRes2 = await cloudinary.uploader.upload(req.files.resume.tempFilePath, { folder: "SHOEB-RESUME" })
+            newDoc.resume = {
+                public_id: cloudRes2.public_id,
+                resume_URL: cloudRes2.secure_url
+            }
 
-        console.log("newDoc", newDoc)
+        }
 
         const doc = await homeModel.findByIdAndUpdate({ _id: id }, newDoc, { new: true });
         if (doc) {
