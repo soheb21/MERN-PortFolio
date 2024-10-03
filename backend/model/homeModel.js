@@ -21,6 +21,8 @@ const homeSchema = new mongoose.Schema({
     linkdin_url: String,
     github_url: String,
     insta_url: String,
+    twitter_url: String,
+    short_des: String,
     resume: {
         public_id: {
             type: String,

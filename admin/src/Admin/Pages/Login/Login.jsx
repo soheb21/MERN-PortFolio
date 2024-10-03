@@ -31,7 +31,7 @@ const Login = () => {
     const dispatch = useDispatch();
 
     const navigate = useNavigate();
-    const { error, isAuth } = useSelector(state => state.auth);
+    const { error, isAuth, loading } = useSelector(state => state.auth);
 
 
     useEffect(() => {
@@ -52,6 +52,10 @@ const Login = () => {
             return
         }
         dispatch(loginAsync(loginFormData));
+    }
+    if (loading) {
+        return <h1 style={{ display: "grid", placeContent: "center", placeItems: "center", color: "blue" }}>Loading...</h1>
+
     }
     return (
         <div>

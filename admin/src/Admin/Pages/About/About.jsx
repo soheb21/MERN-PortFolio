@@ -1,5 +1,8 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Input from '../../Components/Input/Input'
+import { useDispatch, useSelector } from "react-redux"
+import { toast } from "react-toastify"
+import { aboutupdateAsync, getaboutAsync } from '../../../redux/admin_store/admin_about/adminAboutAPI'
 "./About.css"
 
 const About = () => {
@@ -40,17 +43,35 @@ const About = () => {
             placeholder: "Your Description"
         },
     ]
+    const { about, error, loading, message } = useSelector(state => state.about);
+    const dispatch = useDispatch();
+
     const initilizeAboutData = {
-        fullname: "",
-        email: "",
-        phone: "",
-        education: "",
-        des: "",
+        fullname: about.fullname || "",
+        email: about.email || "",
+        phone: about.phone || "",
+        education: about.education || "",
+        des: about.des || "",
     }
     const [AboutFormData, setAboutFormData] = useState(initilizeAboutData);
+
+    useEffect(() => {
+        if (error) {
+            toast.error(error || "Something went wrong")
+            return;
+        }
+        if (message) {
+            toast.success(message);
+            return;
+        }
+        dispatch(getaboutAsync());
+
+    }, [message, error])
     const handleAboutSubmit = () => {
-        console.log("1", AboutFormData);
-        setAboutFormData(initilizeAboutData);
+        dispatch(aboutupdateAsync({ id: about._id, form: AboutFormData }))
+    }
+    if (loading) {
+        return <h1 style={{ display: "grid", placeContent: "center", placeItems: "center", color: "blue" }}>Loading...</h1>
     }
 
     return (

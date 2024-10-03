@@ -16,15 +16,24 @@ import 'react-toastify/dist/ReactToastify.css';
 import { getUserAysnc } from './redux/admin_store/auth/authAPI'
 import ProtectedRoutes from './utils/ProtectedRoutes'
 import { gethome } from './redux/admin_store/admin_home/adminHomeAPI'
+import { getaboutAsync } from './redux/admin_store/admin_about/adminAboutAPI'
+import { getskillAsync } from './redux/admin_store/admin_skill/adminSkillAPI'
+import { getprojectAsync } from './redux/admin_store/admin_project/adminProjectAPI'
+import { getContactAsync } from './redux/admin_store/admin_contact/adminContactAPI'
 
 function App() {
   const dispatch = useDispatch();
   const { isAuth, error, message } = useSelector(state => state.auth)
   const token = localStorage.getItem("token");
   useEffect(() => {
+
     if (isAuth || token) {
       dispatch(getUserAysnc());
       dispatch(gethome());
+      dispatch(getaboutAsync());
+      dispatch(getskillAsync());
+      dispatch(getprojectAsync());
+      dispatch(getContactAsync());
       toast.success(message ? message : null)
     }
     if (error) {

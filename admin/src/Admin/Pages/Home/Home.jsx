@@ -45,31 +45,50 @@ const Home = () => {
         },
         {
             id: 6,
+            label: "Twitter",
+            name: "twitter_url",
+            type: "text",
+            placeholder: "Your twitter-url"
+        },
+        {
+            id: 7,
+            label: "Short-Description",
+            name: "short_des",
+            type: "text",
+            placeholder: "Your short-description"
+        },
+        {
+            id: 8,
             label: "Resume",
             name: "resume",
             type: "file",
         },
         {
-            id: 7,
+            id: 9,
             label: "Logo",
             name: "logo",
             type: "file",
         },
 
     ]
-    const { home } = useSelector(state => state.home);
+    const { home, loading } = useSelector(state => state.home);
     const initilizeHomeData = {
-        position: home ? home.position : "",
-        fullname: home ? home.fullname : "",
-        linkdin_url: home ? home.linkdin_url : "",
-        github_url: home ? home.github_url : "",
-        insta_url: home ? home.insta_url : "",
-        resume: home.resume && home.resume.resume_URL,
-        logo: home.logo && home.logo.logo_URL,
+        position: home.position || "",
+        fullname: home.fullname || "",
+        linkdin_url: home.linkdin_url || "",
+        github_url: home.github_url || "",
+        insta_url: home.insta_url || "",
+        twitter_url: home.twitter_url || "",
+        short_des: home.short_des || "",
+        resume: home?.resume && home.resume?.resume_URL || "",
+        logo: home?.logo && home.logo?.logo_UR || "",
 
     }
     const [homeFormData, setHomeFormData] = useState(initilizeHomeData);
 
+    if (loading) {
+        return <h1 style={{ display: "grid", placeContent: "center", placeItems: "center", color: "blue" }}>Loading...</h1>
+    }
 
 
     const dispatch = useDispatch();
@@ -81,6 +100,8 @@ const Home = () => {
         form.append("linkdin_url", homeFormData.linkdin_url);
         form.append("github_url", homeFormData.github_url);
         form.append("insta_url", homeFormData.insta_url);
+        form.append("twitter_url", homeFormData.twitter_url);
+        form.append("short_des", homeFormData.short_des);
         if (homeFormData.resume) {
             form.append("resume", homeFormData.resume);
         }
@@ -94,7 +115,7 @@ const Home = () => {
 
 
     return (
-        <div className='flexProperty'>
+        <div className='flexProperty home'>
             <Input title={"Home"} handleSubmit={handleSubmit} controls={controls} formData={homeFormData} setFormData={setHomeFormData} />
         </div>
     )

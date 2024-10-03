@@ -23,7 +23,6 @@ exports.addSkill = async (req, res) => {
 exports.updateSkill = async (req, res) => {
     try {
         const { id } = req.params;
-        const { icon_img } = req.files;
         const newDoc = {
             title: req.body.title
         }
@@ -31,13 +30,15 @@ exports.updateSkill = async (req, res) => {
         if (!existingDoc) {
             return errorMssg(400, "Not Found", false, res);
         }
-
-        await cloudinary.uploader.destroy(existingDoc.icon_img.public_id)
-        const cloudinaryResponse = await cloudinary.uploader.upload(icon_img.tempFilePath, { folder: "SHOEB-SKILL" });
-        newDoc.icon_img = {
-            public_id: cloudinaryResponse.public_id,
-            icon_img_URL: cloudinaryResponse.secure_url
+        if (req.files !== null && req.files.icon_img) {
+            await cloudinary.uploader.destroy(existingDoc.icon_img.public_id)
+            const cloudinaryResponse = await cloudinary.uploader.upload(req.files.icon_img.tempFilePath, { folder: "SHOEB-SKILL" });
+            newDoc.icon_img = {
+                public_id: cloudinaryResponse.public_id,
+                icon_img_URL: cloudinaryResponse.secure_url
+            }
         }
+
         const doc = await skillModel.findByIdAndUpdate({ _id: id }, newDoc, { new: true });
         if (doc) {
             return succcessMssg(201, "Skill-info Updated Successfully", true, doc, res);
@@ -65,7 +66,6 @@ exports.getSkill = async (req, res) => {
 exports.deleteSkill = async (req, res) => {
     try {
         const { id } = req.params;
-        console.log("id", id)
         await skillModel.findByIdAndDelete({ _id: id });
 
         return succcessMssg(201, "Skill-info Deleted Successfully", true, id, res);

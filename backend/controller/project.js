@@ -23,7 +23,6 @@ exports.addProject = async (req, res) => {
 exports.updateProject = async (req, res) => {
     try {
         const { id } = req.params;
-        const { project_poster } = req.files;
         const newDoc = {
             project_name: req.body.project_name,
             project_des: req.body.project_des,
@@ -39,13 +38,16 @@ exports.updateProject = async (req, res) => {
         if (!existingDoc) {
             return errorMssg(400, "Not Found", false, res);
         }
-
-        await cloudinary.uploader.destroy(existingDoc.project_poster.public_id)
-        const cloudinaryResponse = await cloudinary.uploader.upload(project_poster.tempFilePath, { folder: "SHOEB-Project" });
-        newDoc.project_poster = {
-            public_id: cloudinaryResponse.public_id,
-            project_poster_URL: cloudinaryResponse.secure_url
+        if (req.files && req.files.project_poster) {
+            await cloudinary.uploader.destroy(existingDoc.project_poster.public_id)
+            const cloudinaryResponse = await cloudinary.uploader.upload(req.files.project_poster.tempFilePath, { folder: "SHOEB-Project" });
+            newDoc.project_poster = {
+                public_id: cloudinaryResponse.public_id,
+                project_poster_URL: cloudinaryResponse.secure_url
+            }
         }
+
+
         const doc = await projectModel.findByIdAndUpdate({ _id: id }, newDoc, { new: true });
         if (doc) {
             return succcessMssg(201, "Project-info Updated Successfully", true, doc, res);

@@ -3,7 +3,9 @@ import API from "../../../utils/API";
 
 export const loginAsync = createAsyncThunk("/login", async (doc, { rejectWithValue }) => {
     try {
-        const { data } = await API.post("/auth/login", doc);
+        const { data } = await API.post("/auth/login", doc, {
+            withCredentials: true
+        });
         if (data.success) {
             localStorage.setItem("token", data.doc)
         }

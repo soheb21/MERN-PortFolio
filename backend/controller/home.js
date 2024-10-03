@@ -4,7 +4,7 @@ const { errorMssg, succcessMssg } = require("../utils/messages");
 
 exports.createHome = async (req, res) => {
     try {
-        const { position, fullname, linkdin_url, github_url, insta_url } = req.body;
+        const { position, fullname, linkdin_url, github_url, insta_url, twitter_url, short_des } = req.body;
         const { logo, resume } = req.files;
 
 
@@ -23,6 +23,8 @@ exports.createHome = async (req, res) => {
             linkdin_url,
             github_url,
             insta_url,
+            twitter_url,
+            short_des,
             logo: {
                 public_id: cloudinaryResponseLogo.public_id,
                 logo_URL: cloudinaryResponseLogo.secure_url
@@ -54,6 +56,8 @@ exports.updateHome = async (req, res) => {
             linkdin_url: req.body.linkdin_url,
             github_url: req.body.github_url,
             insta_url: req.body.insta_url,
+            twitter_url: req.body.twitter_url,
+            short_des: req.body.short_des,
         }
 
         const existingDoc = await homeModel.findById({ _id: id });

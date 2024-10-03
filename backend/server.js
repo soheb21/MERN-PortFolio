@@ -6,7 +6,12 @@ const fileUpload = require("express-fileupload")
 const { connectDB } = require("./Database/db");
 
 //middleware
-server.use(cors());
+server.use(cors({
+    origin: [process.env.PORTFOLIO_URL, process.env.ADMIN_PANEL_URL],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+
+}));
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
 server.use(fileUpload({

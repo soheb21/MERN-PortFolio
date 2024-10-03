@@ -19,7 +19,6 @@ export const homeupdate = createAsyncThunk("/home-update", async (updateData, { 
     try {
         const { data } = await API.put(`/home/updatehome/${id}`, form, {
             headers: {
-
                 'Content-Type': 'multipart/form-data'
             },
         });
