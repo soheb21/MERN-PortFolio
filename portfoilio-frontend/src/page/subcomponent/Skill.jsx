@@ -1,7 +1,6 @@
 import useFetch from '@/hooks/useFetch';
 import Spinner from '@/utils/Spinner';
 import React from 'react'
-import { toast } from 'react-toastify';
 import Title from './Title';
 import { Card } from '@/components/ui/card';
 
@@ -12,7 +11,7 @@ const Skill = () => {
         return <Spinner />
     }
     if (error) {
-        toast.error(error);
+        alert(error);
         return;
     }
     return (

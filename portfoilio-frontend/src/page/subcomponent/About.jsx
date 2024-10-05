@@ -1,13 +1,12 @@
 import about_img from "../../assets/1.png"
 import Spinner from '@/utils/Spinner'
-import useFetch from '@/hooks/useFetch'
 import { toast } from 'react-toastify'
 import Title from "./Title"
 
-const About = () => {
+const About = ({ data, loading, error }) => {
 
-    const { data, loading, error } = useFetch('http://localhost:8000/api/v1/about/get-about');
-  
+
+
     if (loading) {
         return <Spinner />
     }
@@ -16,7 +15,7 @@ const About = () => {
         return;
     }
     return (
-        <div className='w-full flex flex-col overflow-x-hidden'>
+        <div id="about" className='w-full flex flex-col overflow-x-hidden'>
             <Title title={'About me'} />
             <div className="grid sm:grid-cols-1 place-content-center md:grid-cols-2 mb-8 sm:mb-20 gap-14">
                 <img className='w-[350px]' src={about_img} alt="about-image" />

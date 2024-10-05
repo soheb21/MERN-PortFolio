@@ -99,7 +99,7 @@ exports.updateHome = async (req, res) => {
 exports.getHomeInfo = async (req, res) => {
     try {
         //maybe we need Hoem-info ID froom Database;
-        const doc = await homeModel.findOne();
+        const doc = await homeModel.findOne({});
         if (doc) {
             return succcessMssg(201, "Home-Info Fetched Sucessfully", true, doc, res);
         }

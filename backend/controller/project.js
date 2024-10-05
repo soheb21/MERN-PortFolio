@@ -75,7 +75,7 @@ exports.getProject = async (req, res) => {
 
 exports.getProjectDetails = async (req, res) => {
     try {
-        const { id } = req.body;
+        const { id } = req.params;
         const doc = await projectModel.findById(id);
         if (doc) {
             return succcessMssg(201, "Project-details Fetched Sucessfully", true, doc, res);

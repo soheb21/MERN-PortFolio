@@ -5,15 +5,15 @@ import { ExternalLink, Github, Instagram, Linkedin, Twitter } from 'lucide-react
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Typewriter } from 'react-simple-typewriter'
-import { toast } from 'react-toastify'
 
 const Hero = () => {
     const { data, loading, error } = useFetch('http://localhost:8000/api/v1/home/gethome')
     if (loading) {
         return <Spinner />
     }
+
     if (error) {
-        toast.error(error);
+        alert(error);
         return;
     }
     return (
@@ -22,7 +22,7 @@ const Hero = () => {
                 <span className='bg-green-500 rounded-full h-2 w-2'></span>
                 <p>Welcome</p>
             </div>
-            <h1 className='overflow-x-hidden text-[1.3rem] sm:[1.7rem] md:text-[2.2rem] lg:text=[2.8rem] tracking-[2px] mb-2'>
+            <h1 className='overflow-x-hidden text-[1.3rem] sm:[1.6rem] md:text-[2.2rem] lg:text=[2.8rem] tracking-[2px] mb-2'>
                 Hey, I'm {data?.doc?.fullname}
             </h1>
             <h1 className=' uppercase overflow-x-hidden text-orange-200 text-[1.3rem] sm:[1.7rem] md:text-[2.2rem] lg:text=[2.8rem] tracking-[15px] mb-2'>
