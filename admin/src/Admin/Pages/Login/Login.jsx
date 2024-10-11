@@ -40,7 +40,7 @@ const Login = () => {
             dispatch(clesrAllAuthErrors());
         }
         if (isAuth) {
-            navigate("/")
+            navigate("/admin-home")
         }
 
     }, [dispatch, error, isAuth])

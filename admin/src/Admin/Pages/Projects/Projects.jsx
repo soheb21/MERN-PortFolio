@@ -100,8 +100,6 @@ const Projects = () => {
     const [ids, setids] = useState(null);
     const [showModel, setshowModel] = useState(false)
 
-
-
     useEffect(() => {
 
         if (error) {

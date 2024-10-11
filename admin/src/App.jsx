@@ -2,7 +2,7 @@ import Home from './Admin/Pages/Home/Home'
 import Projects from './Admin/Pages/Projects/Projects'
 import './App.css'
 import Navbar from './Admin/Components/Navbar/Navbar'
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation } from "react-router-dom"
 import Skill from './Admin/Pages/Skill/Skill'
 import About from './Admin/Pages/About/About'
 import Contact from './Admin/Pages/Contact/Contact'
@@ -35,6 +35,7 @@ function App() {
       dispatch(getprojectAsync());
       dispatch(getContactAsync());
       toast.success(message ? message : null)
+
     }
     if (error) {
       toast.error(error ? error : "Something went wrong!!")
@@ -44,12 +45,14 @@ function App() {
 
   }, [dispatch, isAuth, token, error])
 
+
+
   return (
     <>
       <Router>
         <Navbar />
         <Routes>
-          <Route path='/' element={
+          <Route path='/admin-home' element={
             <ProtectedRoutes>
               <Home />
             </ProtectedRoutes>

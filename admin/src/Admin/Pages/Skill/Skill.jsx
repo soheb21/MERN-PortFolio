@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import "./Skill.css"
 import Input from '../../Components/Input/Input'
-import icn from "../../../assets/logo.png"
 import { toast } from 'react-toastify'
 import { useDispatch, useSelector } from 'react-redux'
 import { skillAddAsync, skillDeleteAsync, skillUpdateAsync } from '../../../redux/admin_store/admin_skill/adminSkillAPI'
@@ -39,9 +38,7 @@ const Skill = () => {
 
 
     useEffect(() => {
-        if (loading) {
-            <h1>Loading...</h1>
-        }
+
         if (error) {
             toast.error(error || "Something went wrong")
 
@@ -53,7 +50,9 @@ const Skill = () => {
 
     }, [message, error, skill, loading])
 
-
+    if (loading) {
+        <h1>Loading...</h1>
+    }
 
     const handleReset = () => {
         setshowModel(!showModel);

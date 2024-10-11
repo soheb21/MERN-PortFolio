@@ -14,7 +14,7 @@ const Navbar = () => {
 
             <ul className={`${!isOpen ? 'toggle-menu' : ''}`}>
                 <li>
-                    <Link to={"/"}>Home</Link>
+                    <Link to={"/admin-home"}>Home</Link>
                 </li>
                 <li>
                     <Link to={"/admin-about"}>About</Link>

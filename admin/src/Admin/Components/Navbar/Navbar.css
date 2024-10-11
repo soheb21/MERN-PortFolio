@@ -3,7 +3,7 @@ nav {
   justify-content: space-between;
   align-items: center;
   background: var(--primary_bg);
-  padding: 15px 80px;
+  padding: 5px 80px;
   position: fixed;
   top: 0;
   right: 0;
@@ -53,7 +53,7 @@ ul li:hover {
     z-index: -1;
     padding-top: 70px;
     transition: 0.5s;
-    background-color: #212ea0;
+    background-color: var(--primary_bg);
   }
   nav ul li {
     display: block;

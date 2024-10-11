@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import "./Home.css"
 import Input from '../../Components/Input/Input'
 import { useDispatch, useSelector } from 'react-redux'
@@ -72,23 +72,40 @@ const Home = () => {
 
     ]
     const { home, loading } = useSelector(state => state.home);
+
     const initilizeHomeData = {
-        position: home.position || "",
-        fullname: home.fullname || "",
-        linkdin_url: home.linkdin_url || "",
-        github_url: home.github_url || "",
-        insta_url: home.insta_url || "",
-        twitter_url: home.twitter_url || "",
-        short_des: home.short_des || "",
-        resume: home?.resume && home.resume?.resume_URL || "",
-        logo: home?.logo && home.logo?.logo_UR || "",
+        position: "",
+        fullname: "",
+        linkdin_url: "",
+        github_url: "",
+        insta_url: "",
+        twitter_url: "",
+        short_des: "",
+        resume: "",
+        logo: ""
+
 
     }
     const [homeFormData, setHomeFormData] = useState(initilizeHomeData);
 
-    if (loading) {
-        return <h1 style={{ display: "grid", placeContent: "center", placeItems: "center", color: "blue" }}>Loading...</h1>
+
+    const extractData = () => {
+        setHomeFormData({
+            position: home && home.position || "",
+            fullname: home && home.fullname || "",
+            linkdin_url: home && home.linkdin_url || "",
+            github_url: home && home.github_url || "",
+            insta_url: home && home.insta_url || "",
+            twitter_url: home && home.twitter_url || "",
+            short_des: home && home.short_des || "",
+            resume: home && home?.resume && home.resume?.resume_URL || "",
+            logo: home && home?.logo && home.logo?.logo_UR || "",
+        })
     }
+
+    useEffect(() => {
+        extractData();
+    }, [])
 
 
     const dispatch = useDispatch();
@@ -110,6 +127,10 @@ const Home = () => {
         }
 
         dispatch(homeupdate({ form, id: home?._id }))
+    }
+
+    if (loading) {
+        return <h1 style={{ display: "grid", placeContent: "center", placeItems: "center", color: "blue" }}>Loading...</h1>
     }
 
 

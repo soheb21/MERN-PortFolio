@@ -54,6 +54,20 @@ const About = () => {
         des: about.des || "",
     }
     const [AboutFormData, setAboutFormData] = useState(initilizeAboutData);
+    const extractData = () => {
+        dispatch(getaboutAsync());
+        setAboutFormData({
+            fullname: about && about.fullname,
+            email: about && about.email,
+            phone: about && about.phone,
+            education: about && about.education,
+            des: about && about.des,
+        })
+
+    }
+    useEffect(() => {
+        extractData();
+    }, [])
 
     useEffect(() => {
         if (error) {
@@ -64,7 +78,6 @@ const About = () => {
             toast.success(message);
             return;
         }
-        dispatch(getaboutAsync());
 
     }, [message, error])
     const handleAboutSubmit = () => {

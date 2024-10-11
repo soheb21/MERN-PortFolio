@@ -3,19 +3,24 @@
   margin-top: 20px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
   padding: 5%;
   position: relative;
   border-radius: 32px;
   overflow: hidden;
+  overflow-y: scroll;
+  height: 100%;
+  max-height: 600px;
   max-width: 900px;
-  background-color: #fff;
+  background-color: #1e293b;
+  color: white;
 }
 .input-container h3 {
   font-weight: 400;
   border-bottom: 1px solid var(--primary_bg);
   width: 100px;
+  margin-top: 10px;
   text-align: center;
   padding-bottom: 5px;
   margin-bottom: 20px;
@@ -43,7 +48,7 @@
 }
 .submitbtn {
   position: absolute;
-  bottom: 10px;
+  bottom: 5px;
   right: 25px;
   background: var(--primary_bg);
   color: #fff;
