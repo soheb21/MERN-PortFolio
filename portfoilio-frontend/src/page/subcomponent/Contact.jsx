@@ -5,14 +5,8 @@ import { LocateIcon, MailIcon, PhoneIcon } from 'lucide-react';
 import mssg_icon from "../../assets/msg-icon.png"
 import axios from 'axios';
 
-const Contact = ({ data, loading, error }) => {
-    if (loading) {
-        return <Spinner />
-    }
-    if (error) {
-        alert(error);
-        return;
-    }
+const Contact = ({ data, loading }) => {
+
     let initilizeFormData = {
         senderName: "",
         subject: "",
@@ -26,7 +20,7 @@ const Contact = ({ data, loading, error }) => {
         if (!senderName || !subject || !message) {
             alert("Please Provide all fields");
         } else {
-            const data = await axios.post('http://localhost:8000/api/v1/contact/send-message', formData)
+            const data = await axios.post('https://mern-portfolio-lmf4.onrender.com/api/v1/contact/send-message', formData)
             if (data.status === 201) {
                 alert("Message Sent")
                 setFormData(initilizeFormData);
@@ -41,8 +35,11 @@ const Contact = ({ data, loading, error }) => {
         setFormData({ ...formData, [name]: value })
 
     }
+    if (loading) {
+        return <Spinner />
+    }
     return (
-        <div className='w-full flex flex-col'>
+        <div id='contact' className='w-full flex flex-col'>
             <Title title={'Contact us'} />
             {
                 loading

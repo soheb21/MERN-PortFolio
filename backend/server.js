@@ -10,6 +10,7 @@ server.use(cors({
     origin: [process.env.PORTFOLIO_URL, process.env.ADMIN_PANEL_URL],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
+    
 
 }));
 server.use(express.json());

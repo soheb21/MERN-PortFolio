@@ -8,6 +8,7 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { useTheme } from "@/components/theme-provider"
+import { Link } from "react-router-dom"
 
 export function ModeToggle() {
     const { setTheme } = useTheme()
@@ -30,6 +31,9 @@ export function ModeToggle() {
                 </DropdownMenuItem>
                 <DropdownMenuItem onClick={() => setTheme("system")}>
                     System
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => setTheme("system")}>
+                    <Link className="text-[#ffffff] dark:text-[#020817]" to={"https://shoeb-portfolio-admin-panel.netlify.app "} target='_blank'>Admin</Link>
                 </DropdownMenuItem>
             </DropdownMenuContent>
         </DropdownMenu>

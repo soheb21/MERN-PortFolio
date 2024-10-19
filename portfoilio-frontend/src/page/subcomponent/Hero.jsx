@@ -7,17 +7,13 @@ import { Link } from 'react-router-dom'
 import { Typewriter } from 'react-simple-typewriter'
 
 const Hero = () => {
-    const { data, loading, error } = useFetch('http://localhost:8000/api/v1/home/gethome')
+    const { data, loading } = useFetch('https://mern-portfolio-lmf4.onrender.com/api/v1/home/gethome')
     if (loading) {
         return <Spinner />
     }
 
-    if (error) {
-        alert(error);
-        return;
-    }
     return (
-        <div className='w-full'>
+        <div id='hero' className='w-full'>
             <div className="flex items-center gap-2 mb-2">
                 <span className='bg-green-500 rounded-full h-2 w-2'></span>
                 <p>Welcome</p>
@@ -25,11 +21,13 @@ const Hero = () => {
             <h1 className='overflow-x-hidden text-[1.3rem] sm:[1.6rem] md:text-[2.2rem] lg:text=[2.8rem] tracking-[2px] mb-2'>
                 Hey, I'm {data?.doc?.fullname}
             </h1>
-            <h1 className=' uppercase overflow-x-hidden text-orange-200 text-[1.3rem] sm:[1.7rem] md:text-[2.2rem] lg:text=[2.8rem] tracking-[15px] mb-2'>
+            <h1 className=' scr uppercase overflow-x-hidden h-[3rem]   mt-4 w-full mx-auto   text-orange-200 text-[1.2rem] sm:[1.7rem] md:text-[2.2rem] lg:text=[2.8rem]  tracking-[7px] md:tracking-[15px] md:mb-2'>
                 <Typewriter
+
                     words={data?.doc?.position.split(",")}
                     cursor
                     loop={50}
+
                 />
             </h1>
             <div className="w-fit bg-slate-50 px-5 py-2 rounded-[20px] flex items-center gap-5 mt-4 md:mt-8 lg:mt-10">
@@ -62,8 +60,8 @@ const Hero = () => {
                     </Button>
                 </Link>
             </div>
-            <p className='mt-8 text-xl tracking-[2px]'>{data?.doc?.short_des}</p>
-            <hr className='my-8 md:my10' />
+            <p className='mt-8 w-full h-[300px] md:h-[250px] md:text-2xl tracking-[2px]'>{data?.doc?.short_des}</p>
+            <hr className='mt-4 md:mb-10  ' />
         </div >
     )
 }

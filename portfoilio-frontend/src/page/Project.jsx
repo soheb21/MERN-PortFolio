@@ -20,7 +20,7 @@ const Project = () => {
     return (
         <div className="w-full px-10 md:px16  gap-3 flex flex-col justify-center">
             <Title title={"Project Details"} />
-            <img className="max-w-[900px] mx-auto w-full  border-2 border-orange-500 rounded-lg" src={data?.project_poster.project_poster_URL} alt="project_poster_URL" />
+            <img width={"900"} className="max-w-[900px] mx-auto w-full  border-2 border-orange-500 rounded-lg" src={data?.project_poster.project_poster_URL} alt="project_poster_URL" />
 
             <h2 className="font-semibold tracking-[2px] text-[1.4rem] md:text-[2.2rem] lg:text-[2.4rem]">Title: <span className="text-orange-500 font-thin" >{data?.project_name}</span></h2>
             <ul className="flex md:justify-start gap-3 justify-between items-center">

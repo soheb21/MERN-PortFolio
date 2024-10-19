@@ -8,7 +8,7 @@ const useFetchOne = (id) => {
     const fetchOneAsync = async () => {
         setLoading(true);
         try {
-            const { data } = await axios.get("http://localhost:8000/api/v1/project/get-project/details/" + id)
+            const { data } = await axios.get("https://mern-portfolio-lmf4.onrender.com/api/v1/project/get-project/details/" + id, { withCredentials: true })
             setLoading(false);
             setdata(data.doc);
 

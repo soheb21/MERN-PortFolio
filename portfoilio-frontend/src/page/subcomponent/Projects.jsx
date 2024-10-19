@@ -12,20 +12,17 @@ import {
 } from "@/components/ui/carousel"
 import { ExternalLink, Github } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Link, NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Projects = () => {
-    const { data, loading, error } = useFetch('http://localhost:8000/api/v1/project/get-project');
+    const { data, loading } = useFetch('https://mern-portfolio-lmf4.onrender.com/api/v1/project/get-project');
 
     if (loading) {
         return <Spinner />
     }
-    if (error) {
-        alert(error);
-        return;
-    }
+
     return (
-        <div className='w-full flex flex-col px-8 md:px-6 '>
+        <div id='projects' className='w-full flex flex-col px-8 md:px-6 '>
             <Title title={'Projects'} />
             <h4 className='text-xl -mt-4 mb-2 font-semibold'>Total Projects : <span className='bg-slate-800 text-white dark:bg-slate-100 px-2 p-1 dark:text-black rounded-lg'>{data?.doc.length}</span></h4>
             <Carousel
@@ -43,7 +40,7 @@ const Projects = () => {
 
                                         <p className='bg-orange-800 absolute bottom-1 left-1 mx-3 mt-7  mb-4 text-white  px-2 p-1  rounded-lg text-start w-fit'>{index + 1}</p>
                                         <Link to={`/project/${item?._id}`}>
-                                            <img src={item?.project_poster?.project_poster_URL} alt="project_poster_URL" />
+                                            <img loading='lazy' width={'350'} height={'350'} className=' h-auto w-full object-cover' src={item?.project_poster?.project_poster_URL} alt="project_poster_URL" />
                                             <h3 className='text-xl mt-4 mb-2 md:mt-6 font-semibold'>{item?.project_name}</h3>
                                         </Link>
 

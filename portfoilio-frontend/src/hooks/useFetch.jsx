@@ -1,22 +1,21 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
+import { toast } from 'react-toastify'
 
 const useFetch = (url) => {
     const [data, setdata] = useState(null)
-    const [error, setError] = useState(null)
     const [loading, setLoading] = useState(false)
     const fetchData = async () => {
         setLoading(true);  // start loading
-        setError(null);    // reset error state
         try {
-            const { data } = await axios.get(url);
+            const { data } = await axios.get(url, { withCredentials: true });
             setdata(data)
 
         } catch (e) {
             if (e.response && e.response.data.message) {
-                setError(e.response.data.message || 'something went wrong')
+                toast.error(e.response.data.message || 'something went wrong')
             } else {
-                setError(e.message);
+                toast.error(e.message);
             }
         }
         finally {
@@ -27,7 +26,7 @@ const useFetch = (url) => {
     useEffect(() => {
         fetchData();
     }, [url])
-    return { data, loading, error }
+    return { data, loading }
 }
 
 export default useFetch
