@@ -61,7 +61,7 @@ exports.updateProject = async (req, res) => {
 exports.getProject = async (req, res) => {
     try {
         //need to add category filter by self project and company assesments;
-        const doc = await projectModel.find();
+        const doc = await projectModel.find().sort({ createdAt: -1 });
         if (doc) {
             return succcessMssg(201, "Project-Info Fetched Sucessfully", true, doc, res);
         }
